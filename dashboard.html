@@ -767,7 +767,110 @@
                 }
             });
         }
+            </div>
+            <div style="margin-top: 20px;">
+                <div class="tab-nav">
+                    <button class="tab-button active" onclick="filterDeliveries('all')">Todos</button>
+                    <button class="tab-button" onclick="filterDeliveries('pendente')">Pendentes</button>
+                    <button class="tab-button" onclick="filterDeliveries('andamento')">Em andamento</button>
+                    <button class="tab-button" onclick="filterDeliveries('entregue')">Entregues</button>
+                </div>
+                <table class="deliveries-table">
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Produto</th>
+                            <th>Quantidade</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="deliveriesTable">
+                        <tr data-status="pendente">
+                            <td>João Silva</td>
+                            <td>Gás</td>
+                            <td>2</td>
+                            <td>Pendente</td>
+                            <td class="actions-menu">
+                                <button class="actions-btn" onclick="editClient(this)">✏️</button>
+                                <button class="actions-btn" onclick="deleteClient(this)">🗑️</button>
+                            </td>
+                        </tr>
+                        <tr data-status="andamento">
+                            <td>Maria Lima</td>
+                            <td>Água</td>
+                            <td>3</td>
+                            <td>Em andamento</td>
+                            <td class="actions-menu">
+                                <button class="actions-btn" onclick="editClient(this)">✏️</button>
+                                <button class="actions-btn" onclick="deleteClient(this)">🗑️</button>
+                            </td>
+                        </tr>
+                        <tr data-status="entregue">
+                            <td>Carlos Souza</td>
+                            <td>Gás</td>
+                            <td>1</td>
+                            <td>Entregue</td>
+                            <td class="actions-menu">
+                                <button class="actions-btn" onclick="editClient(this)">✏️</button>
+                                <button class="actions-btn" onclick="deleteClient(this)">🗑️</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function filterDeliveries(status) {
+        let rows = document.querySelectorAll('#deliveriesTable tr');
+        rows.forEach(row => {
+            row.style.display = (status === 'all' || row.dataset.status === status) ? '' : 'none';
+        });
+        let buttons = document.querySelectorAll('.tab-button');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+    }
+    function editClient(btn) {
+        alert('Editar cliente: ' + btn.closest('tr').children[0].textContent);
+    }
+    function deleteClient(btn) {
+        if (confirm('Tem certeza que deseja excluir este cliente?')) {
+            btn.closest('tr').remove();
+        }
+    }
+  <div class="container">
+    <!-- Menu de navegação -->
+    <nav>
+      <button onclick="showSection('stock')">Estoque</button>
+      <button onclick="showSection('summary')">Resumo</button>
+      <button onclick="showSection('delivery')">Entregas</button>
+      <button onclick="showSection('user')">Usuários</button>
+    </nav>
 
+    <!-- Seção de Estoque -->
+    <section id="stockSection" class="section"></section>
+
+    <!-- Seção de Resumo -->
+    <section id="summarySection" class="section hidden"></section>
+
+    <!-- Seção de Entregas -->
+    <section id="deliverySection" class="section hidden"></section>
+
+    <!-- Seção de Usuários -->
+    <section id="userSection" class="section hidden">
+      <h2>Gerenciar Usuários</h2>
+      <form id="userForm">
+        <input type="text" id="newUser" placeholder="Novo usuário" required />
+        <button type="submit">Cadastrar</button>
+      </form>
+      <form id="resetForm">
+        <input type="text" id="resetUser" placeholder="Usuário para redefinir senha" required />
+        <button type="submit">Redefinir Senha</button>
+      </form>
+    </section>
+  </div>
         // Inicialização
         updateStockDisplay();
     </script>

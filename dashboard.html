@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Controle de Estoque Aquagas</title>
-    <style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Controle de Estoque Aquagas</title>
+<style>
         * {
             margin: 0;
             padding: 0;
@@ -388,326 +388,510 @@
             color: #555;
             user-select: none;
         }
-    </style>
+
+</style>
 </head>
 <body>
-    <nav class="sidebar">
-        <button id="btn-stock" class="active" onclick="showSection('stock'); setActiveButton('btn-stock')">💧 Estoque</button>
-        <button id="btn-summary" onclick="showSection('summary'); setActiveButton('btn-summary')">📊 Resumo</button>
-        <button id="btn-delivery" onclick="showSection('delivery'); setActiveButton('btn-delivery')">🚚 Entregas</button>
-        <button id="btn-user" onclick="showSection('user'); setActiveButton('btn-user')">👤 Usuários</button>
-    </nav>
+<nav class="sidebar">
+<button id="btn-stock" class="active" onclick="showSection('stock'); setActiveButton('btn-stock')">💧 Estoque</button>
+<button id="btn-summary" onclick="showSection('summary'); setActiveButton('btn-summary')">📊 Resumo</button>
+<button id="btn-delivery" onclick="showSection('delivery'); setActiveButton('btn-delivery')">🚚 Entregas</button>
+<button id="btn-user" onclick="showSection('user'); setActiveButton('btn-user')">👤 Usuários</button>
+</nav>
 
-    <div class="container">
-        <!-- Estoque Section -->
-        <div id="stockSection">
-            <div class="dashboard-cards">
-                <!-- Água -->
-                <div class="card">
-                    <div class="card-header water-header">
-                        <span>💧 Estoque de Água</span>
-                        <span>❗</span>
-                    </div>
-                    <div class="card-content">
-                        <div class="stock-info">
-                            <span>Galões disponíveis:</span>
-                            <span class="stock-number" id="waterStock">09</span>
-                        </div>
-                        <div class="controls">
-                            <input type="number" class="quantity-input" value="1" id="waterQuantity" min="1">
-                            <button class="btn btn-add" onclick="addStock('water')">+ Adicionar</button>
-                            <button class="btn btn-remove" onclick="removeStock('water')">- Remover</button>
-                        </div>
-                        <div class="history-section">
-                            <div class="history-title">
-                                <span>🔵</span>
-                                <span>Histórico de Movimentação</span>
-                            </div>
-                            <div class="history-content">Você ainda não movimentou o registro</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Gás -->
-                <div class="card">
-                    <div class="card-header gas-header">
-                        <span>🔥 Estoque de Gás</span>
-                        <span>❗</span>
-                    </div>
-                    <div class="card-content">
-                        <div class="stock-info">
-                            <span>Botijões disponíveis:</span>
-                            <span class="stock-number gas-stock" id="gasStock">24</span>
-                        </div>
-                        <div class="controls">
-                            <input type="number" class="quantity-input" value="1" id="gasQuantity" min="1">
-                            <button class="btn btn-add" onclick="addStock('gas')">+ Adicionar</button>
-                            <button class="btn btn-remove" onclick="removeStock('gas')">- Remover</button>
-                        </div>
-                        <div class="history-section">
-                            <div class="history-title">
-                                <span>🟠</span>
-                                <span>Histórico de Movimentação</span>
-                            </div>
-                            <div class="history-content">Você ainda não movimentou o registro</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="container">
+<!-- Estoque Section -->
+<div id="stockSection">
+<div class="dashboard-cards">
+<!-- Água -->
+<div class="card">
+<div class="card-header water-header">
+<span>💧 Estoque de Água</span>
+<span>❗</span>
+</div>
+<div class="card-content">
+<div class="stock-info">
+<span>Galões disponíveis:</span>
+<span class="stock-number" id="waterStock">09</span>
+</div>
+<div class="controls">
+<input type="number" class="quantity-input" value="1" id="waterQuantity" min="1">
+<button class="btn btn-add" onclick="addStock('water')">+ Adicionar</button>
+<button class="btn btn-remove" onclick="removeStock('water')">- Remover</button>
+</div>
+<div class="history-section">
+<div class="history-title">
+<span>🔵</span>
+<span>Histórico de Movimentação</span>
+</div>
+<div class="history-content" id="waterHistoryContent">Você ainda não movimentou o registro</div>
+</div>
+</div>
+</div>
+<!-- Gás -->
+<div class="card">
+<div class="card-header gas-header">
+<span>🔥 Estoque de Gás</span>
+<span>❗</span>
+</div>
+<div class="card-content">
+<div class="stock-info">
+<span>Botijões disponíveis:</span>
+<span class="stock-number gas-stock" id="gasStock">24</span>
+</div>
+<div class="controls">
+<input type="number" class="quantity-input" value="1" id="gasQuantity" min="1">
+<button class="btn btn-add" onclick="addStock('gas')">+ Adicionar</button>
+<button class="btn btn-remove" onclick="removeStock('gas')">- Remover</button>
+</div>
+<div class="history-section">
+<div class="history-title">
+<span>🟠</span>
+<span>Histórico de Movimentação</span>
+</div>
+<div class="history-content" id="gasHistoryContent">Você ainda não movimentou o registro</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-        <!-- Resumo Section -->
-        <div id="summarySection" class="hidden">
-            <div class="summary-section">
-                <h2>📊 Resumo do Estoque</h2>
-                <table class="summary-table">
-                    <thead>
-                        <tr>
-                            <th>ITEM</th>
-                            <th>QUANTIDADE</th>
-                            <th>STATUS</th>
-                            <th>ÚLTIMA ATUALIZAÇÃO</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div style="display: flex; align-items: center; gap: 10px;">
-                                    <span>🔥</span>
-                                    <div>
-                                        <strong>Gás</strong><br>
-                                        <small>Botijões de 13Kg</small>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><strong id="summaryGasQuantity">24</strong></td>
-                            <td><span class="status-badge status-normal" id="summaryGasStatus">ABAIXO DO NORMAL</span></td>
-                            <td>
-                                15/05/2025<br>
-                                <small>18:45</small>
-                            </td>
-                            <td><button class="btn-history btn-history-gas" onclick="alert('Ver histórico do Gás')">VER HISTÓRICO</button></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div style="display: flex; align-items: center; gap: 10px;">
-                                    <span>💧</span>
-                                    <div>
-                                        <strong>Água</strong><br>
-                                        <small>Galões de 20L</small>
-                                    </div>
-                                </div>
-                            </td>
-                            <td><strong id="summaryWaterQuantity">09</strong></td>
-                            <td><span class="status-badge status-low" id="summaryWaterStatus">BAIXO</span></td>
-                            <td>
-                                13/05/2025<br>
-                                <small>08:00</small>
-                            </td>
-                            <td><button class="btn-history btn-history-water" onclick="alert('Ver histórico da Água')">VER HISTÓRICO</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+<!-- Resumo Section -->
+<div id="summarySection" class="hidden">
+<div class="summary-section">
+<h2>📊 Resumo do Estoque</h2>
+<table class="summary-table">
+<thead>
+<tr>
+<th>ITEM</th>
+<th>QUANTIDADE</th>
+<th>STATUS</th>
+<th>ÚLTIMA ATUALIZAÇÃO</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<div style="display: flex; align-items: center; gap: 10px;">
+<span>🔥</span>
+<div>
+<strong>Gás</strong><br>
+<small>Botijões de 13Kg</small>
+</div>
+</div>
+</td>
+<td><strong id="summaryGasQuantity">24</strong></td>
+<td><span class="status-badge status-normal" id="summaryGasStatus">ABAIXO DO NORMAL</span></td>
+<td id="summaryGasDate">15/05/2025<br><small>18:45</small></td>
+<td><button class="btn-history btn-history-gas" onclick="showHistory('gas')">VER HISTÓRICO</button></td>
+</tr>
+<tr>
+<td>
+<div style="display: flex; align-items: center; gap: 10px;">
+<span>💧</span>
+<div>
+<strong>Água</strong><br>
+<small>Galões de 20L</small>
+</div>
+</div>
+</td>
+<td><strong id="summaryWaterQuantity">09</strong></td>
+<td><span class="status-badge status-low" id="summaryWaterStatus">BAIXO</span></td>
+<td id="summaryWaterDate">13/05/2025<br><small>08:00</small></td>
+<td><button class="btn-history btn-history-water" onclick="showHistory('water')">VER HISTÓRICO</button></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 
-        <!-- Entregas Section -->
-        <div id="deliverySection" class="hidden">
-            <div class="deliveries-section">
-                <div class="deliveries-header">
-                    <div class="deliveries-title">
-                        <span>🚚</span>
-                        <span>Entregas</span>
-                    </div>
-                    <div style="display: flex; gap: 15px; align-items: center;">
-                        <input type="text" class="search-input" placeholder="Digite o nome do Cliente ou o Bairro">
-                        <button class="btn btn-new-delivery">
-                            <span>📦</span>
-                            <span>NOVA ENTREGA</span>
-                        </button>
-                    </div>
-                </div>
+<!-- Entregas Section -->
+<div id="deliverySection" class="hidden">
+<div class="deliveries-section">
+<div class="deliveries-header">
+<div class="deliveries-title">
+<span>🚚</span>
+<span>Entregas</span>
+</div>
+<div style="display: flex; gap: 15px; align-items: center;">
+<input type="text" class="search-input" id="searchDelivery" placeholder="Digite o nome do Cliente ou o Bairro">
+<button class="btn btn-new-delivery" onclick="openDeliveryForm()">
+<span>📦</span>
+<span>NOVA ENTREGA</span>
+</button>
+</div>
+</div>
 
-                <div class="status-cards">
-                    <div class="status-card status-pending">
-                        <div>⚠️ Pendentes <span class="status-number">03</span></div>
-                    </div>
-                    <div class="status-card status-progress">
-                        <div>🕐 Em Andamento <span class="status-number">01</span></div>
-                    </div>
-                    <div class="status-card status-completed">
-                        <div>✅ Entregues <span class="status-number">05</span></div>
-                    </div>
-                </div>
+<div class="status-cards">
+<div class="status-card status-pending">
+<div>⚠️ Pendentes <span class="status-number" id="pendingCount">0</span></div>
+</div>
+<div class="status-card status-progress">
+<div>🕐 Em Andamento <span class="status-number" id="progressCount">0</span></div>
+</div>
+<div class="status-card status-completed">
+<div>✅ Entregues <span class="status-number" id="completedCount">0</span></div>
+</div>
+</div>
 
-                <div class="tab-nav">
-                    <button class="tab-button active" onclick="filterDeliveries('all', this)">Todos</button>
-                    <button class="tab-button" onclick="filterDeliveries('pending', this)">Pendentes</button>
-                    <button class="tab-button" onclick="filterDeliveries('completed', this)">Entregues</button>
-                </div>
+<div class="tab-nav">
+<button class="tab-button active" onclick="filterDeliveries('all', this)">Todos</button>
+<button class="tab-button" onclick="filterDeliveries('pending', this)">Pendentes</button>
+<button class="tab-button" onclick="filterDeliveries('progress', this)">Em Andamento</button>
+<button class="tab-button" onclick="filterDeliveries('completed', this)">Entregues</button>
+</div>
 
-                <table class="deliveries-table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Cliente</th>
-                            <th>Produto</th>
-                            <th>Bairro</th>
-                            <th>Telefone</th>
-                            <th>Status</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody id="deliveriesBody">
-                        <!-- Example static rows -->
-                        <tr data-status="pending">
-                            <td>1</td>
-                            <td>Maria Silva</td>
-                            <td>Botijão de Gás</td>
-                            <td>Bairro Centro</td>
-                            <td>(83) 99999-9999</td>
-                            <td><span class="delivery-status-icon status-pending-icon" title="Pendente"></span> Pendente</td>
-                            <td>
-                                <button class="actions-btn" onclick="alert('Editar entrega 1')">✏️</button>
-                                <button class="actions-btn" onclick="alert('Excluir entrega 1')">🗑️</button>
-                            </td>
-                        </tr>
-                        <tr data-status="completed">
-                            <td>2</td>
-                            <td>João Pereira</td>
-                            <td>Galão de Água</td>
-                            <td>Bairro Jardim</td>
-                            <td>(83) 98888-8888</td>
-                            <td><span class="delivery-status-icon status-completed-icon" title="Entregue"></span> Entregue</td>
-                            <td>
-                                <button class="actions-btn" onclick="alert('Editar entrega 2')">✏️</button>
-                                <button class="actions-btn" onclick="alert('Excluir entrega 2')">🗑️</button>
-                            </td>
-                        </tr>
-                        <!-- ... more rows as needed ... -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
+<table class="deliveries-table">
+<thead>
+<tr>
+<th>#</th>
+<th>Cliente</th>
+<th>Produto</th>
+<th>Bairro</th>
+<th>Telefone</th>
+<th>Status</th>
+<th>Ações</th>
+</tr>
+</thead>
+<tbody id="deliveriesBody">
+<!-- Linhas dinâmicas -->
+</tbody>
+</table>
+</div>
+<!-- Formulário de Nova Entrega (modal simples) -->
+<div id="deliveryFormModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.3); align-items:center; justify-content:center; z-index:1000;">
+  <form id="deliveryForm" style="background:white; padding:30px 20px; border-radius:10px; min-width:320px; max-width:90vw; display:flex; flex-direction:column; gap:12px; position:relative;">
+    <span style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:20px;" onclick="closeDeliveryForm()">✖️</span>
+    <h3>Nova Entrega</h3>
+    <input type="text" id="formCliente" placeholder="Nome do Cliente" required>
+    <input type="text" id="formProduto" placeholder="Produto (ex: Gás, Água)" required>
+    <input type="text" id="formBairro" placeholder="Bairro" required>
+    <input type="text" id="formTelefone" placeholder="Telefone" required>
+    <select id="formStatus" required>
+      <option value="pending">Pendente</option>
+      <option value="progress">Em Andamento</option>
+      <option value="completed">Entregue</option>
+    </select>
+    <button type="submit" class="btn btn-add">Salvar</button>
+  </form>
+</div>
+</div>
 
-        <!-- Usuários Section -->
-        <div id="userSection" class="hidden">
-            <h2>Gerenciar Usuários</h2>
-            <form id="userForm" onsubmit="event.preventDefault(); alert('Usuário cadastrado: ' + document.getElementById('newUser').value);">
-                <input type="text" id="newUser" placeholder="Novo usuário" required />
-                <button type="submit">Cadastrar</button>
-            </form>
-            <form id="resetForm" onsubmit="event.preventDefault(); alert('Senha redefinida para: ' + document.getElementById('resetUser').value);">
-                <input type="text" id="resetUser" placeholder="Usuário para redefinir senha" required />
-                <button type="submit">Redefinir Senha</button>
-            </form>
-        </div>
-    </div>
+<!-- Usuários Section -->
+<div id="userSection" class="hidden">
+<h2>Gerenciar Usuários</h2>
+<form id="userForm" onsubmit="event.preventDefault(); alert('Usuário cadastrado: ' + document.getElementById('newUser').value);">
+<input type="text" id="newUser" placeholder="Novo usuário" required />
+<button type="submit">Cadastrar</button>
+</form>
+<form id="resetForm" onsubmit="event.preventDefault(); alert('Senha redefinida para: ' + document.getElementById('resetUser').value);">
+<input type="text" id="resetUser" placeholder="Usuário para redefinir senha" required />
+<button type="submit">Redefinir Senha</button>
+</form>
+</div>
+</div>
 
-    <script>
-        // Section navigation
-        function showSection(section) {
-            document.getElementById('stockSection').classList.add('hidden');
-            document.getElementById('summarySection').classList.add('hidden');
-            document.getElementById('deliverySection').classList.add('hidden');
-            document.getElementById('userSection').classList.add('hidden');
-            if (section === 'stock') {
-                document.getElementById('stockSection').classList.remove('hidden');
-            } else if (section === 'summary') {
-                document.getElementById('summarySection').classList.remove('hidden');
-            } else if (section === 'delivery') {
-                document.getElementById('deliverySection').classList.remove('hidden');
-            } else if (section === 'user') {
-                document.getElementById('userSection').classList.remove('hidden');
-            }
-        }
+<script>
+// Persistência local
+function saveData() {
+  localStorage.setItem('aquagas_data', JSON.stringify({
+    waterStock, gasStock, waterHistory, gasHistory, deliveries, lastUpdate
+  }));
+}
+function loadData() {
+  const data = JSON.parse(localStorage.getItem('aquagas_data'));
+  if (data) {
+    waterStock = data.waterStock;
+    gasStock = data.gasStock;
+    waterHistory = data.waterHistory;
+    gasHistory = data.gasHistory;
+    deliveries = data.deliveries;
+    lastUpdate = data.lastUpdate || { water: null, gas: null };
+  }
+}
 
-        function setActiveButton(btnId) {
-            const buttons = document.querySelectorAll('nav.sidebar button');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            document.getElementById(btnId).classList.add('active');
-        }
+// Section navigation
+function showSection(section) {
+  document.getElementById('stockSection').classList.add('hidden');
+  document.getElementById('summarySection').classList.add('hidden');
+  document.getElementById('deliverySection').classList.add('hidden');
+  document.getElementById('userSection').classList.add('hidden');
+  if (section === 'stock') {
+    document.getElementById('stockSection').classList.remove('hidden');
+  } else if (section === 'summary') {
+    document.getElementById('summarySection').classList.remove('hidden');
+  } else if (section === 'delivery') {
+    document.getElementById('deliverySection').classList.remove('hidden');
+  } else if (section === 'user') {
+    document.getElementById('userSection').classList.remove('hidden');
+  }
+}
 
-        // Stock logic
-        let waterStock = 9;
-        let gasStock = 24;
+function setActiveButton(btnId) {
+  const buttons = document.querySelectorAll('nav.sidebar button');
+  buttons.forEach(btn => btn.classList.remove('active'));
+  document.getElementById(btnId).classList.add('active');
+}
 
-        function updateStockDisplay() {
-            document.getElementById('waterStock').textContent = waterStock.toString().padStart(2, '0');
-            document.getElementById('gasStock').textContent = gasStock.toString().padStart(2, '0');
-            document.getElementById('summaryWaterQuantity').textContent = waterStock;
-            document.getElementById('summaryGasQuantity').textContent = gasStock;
-            document.getElementById('summaryWaterStatus').textContent = waterStock < 10 ? 'BAIXO' : 'NORMAL';
-            document.getElementById('summaryWaterStatus').className = waterStock < 10 ? 'status-badge status-low' : 'status-badge status-normal';
-            document.getElementById('summaryGasStatus').textContent = gasStock < 10 ? 'BAIXO' : 'NORMAL';
-            document.getElementById('summaryGasStatus').className = gasStock < 10 ? 'status-badge status-low' : 'status-badge status-normal';
-        }
+// Estoque e histórico
+let waterStock = 9;
+let gasStock = 24;
+let waterHistory = [];
+let gasHistory = [];
+let lastUpdate = { water: null, gas: null };
 
-        function addStock(type) {
-            let quantityInput = type === 'water'
-                ? document.getElementById('waterQuantity')
-                : document.getElementById('gasQuantity');
-            let quantity = parseInt(quantityInput.value);
-            if (isNaN(quantity) || quantity <= 0) {
-                alert('Por favor, insira uma quantidade válida.');
-                return;
-            }
-            if (type === 'water') {
-                waterStock += quantity;
-            } else if (type === 'gas') {
-                gasStock += quantity;
-            }
-            quantityInput.value = '1';
-            updateStockDisplay();
-            alert(`Adicionado ${quantity} ao estoque de ${type === 'water' ? 'água' : 'gás'}.`);
-        }
+// Entregas
+let deliveries = [
+  { id: 1, cliente: "Maria Silva", produto: "Botijão de Gás", bairro: "Centro", telefone: "(83) 99999-9999", status: "pending" },
+  { id: 2, cliente: "João Pereira", produto: "Galão de Água", bairro: "Jardim", telefone: "(83) 98888-8888", status: "completed" },
+  { id: 3, cliente: "Ana Souza", produto: "Botijão de Gás", bairro: "Centro", telefone: "(83) 97777-7777", status: "progress" }
+];
+let deliveryIdCounter = 4;
 
-        function removeStock(type) {
-            let quantityInput = type === 'water'
-                ? document.getElementById('waterQuantity')
-                : document.getElementById('gasQuantity');
-            let quantity = parseInt(quantityInput.value);
-            if (isNaN(quantity) || quantity <= 0) {
-                alert('Por favor, insira uma quantidade válida.');
-                return;
-            }
-            if (type === 'water') {
-                if (quantity > waterStock) {
-                    alert('Quantidade maior do que o estoque disponível.');
-                    return;
-                }
-                waterStock -= quantity;
-            } else if (type === 'gas') {
-                if (quantity > gasStock) {
-                    alert('Quantidade maior do que o estoque disponível.');
-                    return;
-                }
-                gasStock -= quantity;
-            }
-            quantityInput.value = '1';
-            updateStockDisplay();
-            alert(`Removido ${quantity} do estoque de ${type === 'water' ? 'água' : 'gás'}.`);
-        }
+// Carregar dados salvos
+loadData();
 
-        // Delivery filtering
-        function filterDeliveries(status, button) {
-            // Update tab buttons
-            const buttons = document.querySelectorAll('.tab-button');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            if (button) button.classList.add('active');
-            // Filter rows
-            const rows = document.querySelectorAll('#deliveriesBody tr');
-            rows.forEach(row => {
-                if (status === 'all') {
-                    row.style.display = '';
-                } else {
-                    row.style.display = (row.getAttribute('data-status') === status) ? '' : 'none';
-                }
-            });
-        }
+function updateStockDisplay() {
+  document.getElementById('waterStock').textContent = waterStock.toString().padStart(2, '0');
+  document.getElementById('gasStock').textContent = gasStock.toString().padStart(2, '0');
+  document.getElementById('summaryWaterQuantity').textContent = waterStock;
+  document.getElementById('summaryGasQuantity').textContent = gasStock;
+  document.getElementById('summaryWaterStatus').textContent = waterStock < 10 ? 'BAIXO' : 'NORMAL';
+  document.getElementById('summaryWaterStatus').className = waterStock < 10 ? 'status-badge status-low' : 'status-badge status-normal';
+  document.getElementById('summaryGasStatus').textContent = gasStock < 10 ? 'BAIXO' : 'NORMAL';
+  document.getElementById('summaryGasStatus').className = gasStock < 10 ? 'status-badge status-low' : 'status-badge status-normal';
 
-        // Initialize stock on load
-        updateStockDisplay();
-    </script>
+  // Datas de atualização
+  document.getElementById('summaryWaterDate').innerHTML = lastUpdate.water ? formatDateTime(lastUpdate.water) : "-";
+  document.getElementById('summaryGasDate').innerHTML = lastUpdate.gas ? formatDateTime(lastUpdate.gas) : "-";
+  renderWaterHistory();
+  renderGasHistory();
+  saveData();
+}
+
+function formatDateTime(dateStr) {
+  const d = new Date(dateStr);
+  return `${d.toLocaleDateString()}<br><small>${d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</small>`;
+}
+
+function addStock(type) {
+  let quantityInput = type === 'water'
+    ? document.getElementById('waterQuantity')
+    : document.getElementById('gasQuantity');
+  let quantity = parseInt(quantityInput.value);
+  if (isNaN(quantity) || quantity <= 0) {
+    alert('Por favor, insira uma quantidade válida.');
+    return;
+  }
+  const now = new Date().toISOString();
+  if (type === 'water') {
+    waterStock += quantity;
+    waterHistory.unshift({ tipo: 'entrada', quantidade: quantity, data: now });
+    lastUpdate.water = now;
+    renderWaterHistory();
+  } else if (type === 'gas') {
+    gasStock += quantity;
+    gasHistory.unshift({ tipo: 'entrada', quantidade: quantity, data: now });
+    lastUpdate.gas = now;
+    renderGasHistory();
+  }
+  quantityInput.value = '1';
+  updateStockDisplay();
+  alert(`Adicionado ${quantity} ao estoque de ${type === 'water' ? 'água' : 'gás'}.`);
+}
+
+function removeStock(type) {
+  let quantityInput = type === 'water'
+    ? document.getElementById('waterQuantity')
+    : document.getElementById('gasQuantity');
+  let quantity = parseInt(quantityInput.value);
+  if (isNaN(quantity) || quantity <= 0) {
+    alert('Por favor, insira uma quantidade válida.');
+    return;
+  }
+  const now = new Date().toISOString();
+  if (type === 'water') {
+    if (quantity > waterStock) {
+      alert('Quantidade maior do que o estoque disponível.');
+      return;
+    }
+    waterStock -= quantity;
+    waterHistory.unshift({ tipo: 'saida', quantidade: quantity, data: now });
+    lastUpdate.water = now;
+    renderWaterHistory();
+  } else if (type === 'gas') {
+    if (quantity > gasStock) {
+      alert('Quantidade maior do que o estoque disponível.');
+      return;
+    }
+    gasStock -= quantity;
+    gasHistory.unshift({ tipo: 'saida', quantidade: quantity, data: now });
+    lastUpdate.gas = now;
+    renderGasHistory();
+  }
+  quantityInput.value = '1';
+  updateStockDisplay();
+  alert(`Removido ${quantity} do estoque de ${type === 'water' ? 'água' : 'gás'}.`);
+}
+
+function renderWaterHistory() {
+  const container = document.getElementById('waterHistoryContent');
+  if (!waterHistory.length) {
+    container.textContent = "Você ainda não movimentou o registro";
+    return;
+  }
+  container.innerHTML = waterHistory.slice(0, 5).map(item =>
+    `<div>${item.tipo === 'entrada' ? '➕' : '➖'} ${item.quantidade} galão(s) em ${new Date(item.data).toLocaleString()}</div>`
+  ).join('');
+}
+function renderGasHistory() {
+  const container = document.getElementById('gasHistoryContent');
+  if (!gasHistory.length) {
+    container.textContent = "Você ainda não movimentou o registro";
+    return;
+  }
+  container.innerHTML = gasHistory.slice(0, 5).map(item =>
+    `<div>${item.tipo === 'entrada' ? '➕' : '➖'} ${item.quantidade} botijão(ões) em ${new Date(item.data).toLocaleString()}</div>`
+  ).join('');
+}
+function showHistory(type) {
+  let history = type === 'water' ? waterHistory : gasHistory;
+  if (!history.length) {
+    alert("Nenhuma movimentação registrada.");
+    return;
+  }
+  alert(history.map(item =>
+    `${item.tipo === 'entrada' ? 'Entrada' : 'Saída'}: ${item.quantidade} em ${new Date(item.data).toLocaleString()}`
+  ).join('\n'));
+}
+
+// Entregas
+function renderDeliveries(filterStatus = currentDeliveryFilter, searchTerm = '') {
+  const tbody = document.getElementById('deliveriesBody');
+  tbody.innerHTML = '';
+  let filtered = deliveries.filter(delivery => {
+    let statusMatch = filterStatus === 'all' || delivery.status === filterStatus;
+    let searchMatch = !searchTerm ||
+      delivery.cliente.toLowerCase().includes(searchTerm) ||
+      delivery.bairro.toLowerCase().includes(searchTerm);
+    return statusMatch && searchMatch;
+  });
+  filtered.forEach((delivery, idx) => {
+    let statusIcon = delivery.status === 'pending' ? 'status-pending-icon' :
+      delivery.status === 'progress' ? 'status-warning-icon' : 'status-completed-icon';
+    let statusText = delivery.status === 'pending' ? 'Pendente' :
+      delivery.status === 'progress' ? 'Em Andamento' : 'Entregue';
+    let tr = document.createElement('tr');
+    tr.setAttribute('data-status', delivery.status);
+    tr.innerHTML = `
+      <td>${delivery.id}</td>
+      <td>${delivery.cliente}</td>
+      <td>${delivery.produto}</td>
+      <td>${delivery.bairro}</td>
+      <td>${delivery.telefone}</td>
+      <td><span class="delivery-status-icon ${statusIcon}" title="${statusText}"></span> ${statusText}</td>
+      <td>
+        <button class="actions-btn" onclick="editDelivery(${delivery.id})">✏️</button>
+        <button class="actions-btn" onclick="deleteDelivery(${delivery.id})">🗑️</button>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+  updateDeliveryCounts();
+}
+
+function updateDeliveryCounts() {
+  document.getElementById('pendingCount').textContent = deliveries.filter(d => d.status === 'pending').length;
+  document.getElementById('progressCount').textContent = deliveries.filter(d => d.status === 'progress').length;
+  document.getElementById('completedCount').textContent = deliveries.filter(d => d.status === 'completed').length;
+}
+
+let currentDeliveryFilter = 'all';
+
+function filterDeliveries(status, button) {
+  currentDeliveryFilter = status;
+  // Update tab buttons
+  const buttons = document.querySelectorAll('.tab-button');
+  buttons.forEach(btn => btn.classList.remove('active'));
+  if (button) button.classList.add('active');
+  renderDeliveries(status, document.getElementById('searchDelivery').value.trim().toLowerCase());
+}
+
+// Busca de entregas
+document.getElementById('searchDelivery').addEventListener('input', function() {
+  renderDeliveries(currentDeliveryFilter, this.value.trim().toLowerCase());
+});
+
+// Nova entrega
+function openDeliveryForm(editId = null) {
+  document.getElementById('deliveryFormModal').style.display = 'flex';
+  if (editId) {
+    const entrega = deliveries.find(d => d.id === editId);
+    document.getElementById('formCliente').value = entrega.cliente;
+    document.getElementById('formProduto').value = entrega.produto;
+    document.getElementById('formBairro').value = entrega.bairro;
+    document.getElementById('formTelefone').value = entrega.telefone;
+    document.getElementById('formStatus').value = entrega.status;
+    document.getElementById('deliveryForm').setAttribute('data-edit-id', editId);
+  } else {
+    document.getElementById('formCliente').value = '';
+    document.getElementById('formProduto').value = '';
+    document.getElementById('formBairro').value = '';
+    document.getElementById('formTelefone').value = '';
+    document.getElementById('formStatus').value = 'pending';
+    document.getElementById('deliveryForm').removeAttribute('data-edit-id');
+  }
+}
+function closeDeliveryForm() {
+  document.getElementById('deliveryFormModal').style.display = 'none';
+}
+
+// Salvar entrega (nova ou edição)
+document.getElementById('deliveryForm').onsubmit = function(e) {
+  e.preventDefault();
+  const cliente = document.getElementById('formCliente').value.trim();
+  const produto = document.getElementById('formProduto').value.trim();
+  const bairro = document.getElementById('formBairro').value.trim();
+  const telefone = document.getElementById('formTelefone').value.trim();
+  const status = document.getElementById('formStatus').value;
+  const editId = this.getAttribute('data-edit-id');
+  if (editId) {
+    // Editar
+    const idx = deliveries.findIndex(d => d.id == editId);
+    if (idx > -1) {
+      deliveries[idx] = { ...deliveries[idx], cliente, produto, bairro, telefone, status };
+    }
+  } else {
+    // Nova
+    deliveries.push({
+      id: deliveryIdCounter++,
+      cliente, produto, bairro, telefone, status
+    });
+  }
+  closeDeliveryForm();
+  renderDeliveries(currentDeliveryFilter, document.getElementById('searchDelivery').value.trim().toLowerCase());
+  saveData();
+};
+
+// Editar entrega
+function editDelivery(id) {
+  openDeliveryForm(id);
+}
+
+// Excluir entrega
+function deleteDelivery(id) {
+  if (confirm("Deseja realmente excluir esta entrega?")) {
+    deliveries = deliveries.filter(d => d.id !== id);
+    renderDeliveries(currentDeliveryFilter, document.getElementById('searchDelivery').value.trim().toLowerCase());
+    saveData();
+  }
+}
+
+// Inicialização
+updateStockDisplay();
+renderDeliveries();
+
+</script>
 </body>
 </html>

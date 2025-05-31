@@ -9,13 +9,81 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Roboto', sans-serif, Arial, sans-serif;
+      font-family: 'Roboto', Arial, sans-serif;
     }
     body {
+      background: #f9f9f9;
+      color: #222;
+      min-height: 100vh;
+    }
+    .app-header {
+      width: 100vw;
+      background: linear-gradient(90deg, #3b5998 0%, #f97316 100%);
+      padding: 0 0 18px 0;
       display: flex;
-      height: 100vh;
-      background-color: #f9f9f9;
-      color: #333;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 0 0 18px 18px;
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 32px;
+    }
+    .logo-area img {
+      height: 38px;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 32px;
+    }
+    .header-actions .admin-btn,
+    .header-actions .logout-btn {
+      border: none;
+      border-radius: 6px;
+      padding: 8px 18px;
+      font-weight: bold;
+      font-size: 15px;
+      cursor: pointer;
+      background: #fff;
+      color: #b85c00;
+      opacity: 0.7;
+      transition: background 0.2s, color 0.2s;
+    }
+    .header-actions .logout-btn {
+      background: #f97316;
+      color: #fff;
+      opacity: 1;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .header-actions .logout-btn:hover {
+      background: #c2410c;
+    }
+    .header-actions .admin-btn {
+      background: #eee;
+      color: #b85c00;
+    }
+    .header-actions .admin-btn:hover {
+      background: #f3f3f3;
+      color: #f97316;
+    }
+    .main-content {
+      max-width: 1200px;
+      margin: 32px auto;
+      padding: 0 16px;
+    }
+    .flex-row {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 900px) {
+      .flex-row { flex-direction: column; }
     }
     nav.sidebar {
       width: 220px;
@@ -140,149 +208,198 @@
       color: #555;
     }
     .hidden { display: none; }
+    .summary-section {
+      margin-top: 30px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);
+      padding: 24px 20px;
+    }
     .summary-section h2 {
-      color: #1e40af;
-      margin-bottom: 20px;
+      color: #222;
+      font-size: 22px;
       font-weight: 700;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
     .summary-table {
       width: 100%;
-      border-collapse: collapse;
-      background: white;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: #fff;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);
     }
     .summary-table thead {
-      background-color: #2563eb;
-      color: white;
+      background: #f6f6f6;
+      color: #222;
     }
     .summary-table th, .summary-table td {
-      padding: 12px 15px;
+      padding: 14px 18px;
       text-align: left;
       border-bottom: 1px solid #eee;
       vertical-align: middle;
+      font-size: 16px;
     }
-    .summary-table tbody tr:hover { background-color: #f0f4ff; }
-    .status-badge {
-      padding: 4px 10px;
-      border-radius: 20px;
+    .summary-table tbody tr {
+      transition: background 0.2s;
+    }
+    .summary-table tbody tr:hover {
+      background: #f0f4ff;
+    }
+    .summary-table .item-icon {
+      font-size: 26px;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    .summary-table .status-badge {
+      padding: 4px 14px;
+      border-radius: 16px;
       font-weight: 600;
-      font-size: 13px;
+      font-size: 14px;
       text-transform: uppercase;
-      color: white;
+      color: #fff;
       display: inline-block;
     }
-    .status-normal { background-color: #2563eb; }
-    .status-low { background-color: #f97316; }
+    .status-badge.status-low { background: #ffb3b3; color: #c0392b; }
+    .status-badge.status-normal { background: #ffeaa7; color: #b59f3b; }
+    .status-badge.status-ok { background: #b2f2bb; color: #27ae60; }
+    .btn-history {
+      border: none;
+      border-radius: 6px;
+      padding: 8px 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-history-gas { background: #ff9800; color: #fff; }
+    .btn-history-water { background: #2563eb; color: #fff; }
+    .btn-history-gas:hover { background: #e65100; }
+    .btn-history-water:hover { background: #1d4ed8; }
     .deliveries-section {
-      background: white;
+      background: #fff;
       border-radius: 12px;
-      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
-      padding: 20px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);
+      padding: 24px 20px;
+      margin-top: 30px;
+    }
+    .deliveries-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 26px;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 18px;
     }
     .deliveries-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       gap: 10px;
       flex-wrap: wrap;
     }
-    .deliveries-title {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 700;
-      font-size: 22px;
-      color: #2563eb;
-    }
     .search-input {
-      padding: 8px 12px;
+      padding: 10px 14px;
       border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-      width: 250px;
+      border: 1px solid #bbb;
+      font-size: 15px;
+      width: 260px;
       max-width: 100%;
     }
     .btn-new-delivery {
       display: flex;
       align-items: center;
-      gap: 6px;
-      background-color: #2563eb;
-      color: white;
+      gap: 8px;
+      background: #2563eb;
+      color: #fff;
       border-radius: 6px;
       border: none;
       font-weight: 700;
-      padding: 8px 14px;
+      padding: 10px 18px;
       cursor: pointer;
       user-select: none;
-      transition: background-color 0.3s;
+      transition: background 0.2s;
     }
-    .btn-new-delivery:hover { background-color: #1e40af; }
-    .status-cards {
+    .btn-new-delivery:hover { background: #1e40af; }
+    .delivery-status-cards {
       display: flex;
-      gap: 15px;
-      margin-bottom: 15px;
-      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 20px;
     }
-    .status-card {
-      flex: 1 1 120px;
-      padding: 15px 20px;
+    .delivery-status-card {
+      flex: 1;
       border-radius: 10px;
-      font-weight: 700;
-      font-size: 16px;
-      color: white;
+      padding: 18px 0;
       text-align: center;
-      user-select: none;
-      box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+      font-size: 18px;
+      font-weight: bold;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);
     }
-    .status-pending { background-color: #fbbf24; }
-    .status-progress { background-color: #3b82f6; }
-    .status-completed { background-color: #22c55e; }
-    .tab-nav { margin-bottom: 15px; }
+    .delivery-status-card.pending { background: #ffe5e5; color: #c0392b; }
+    .delivery-status-card.progress { background: #fff9e5; color: #b59f3b; }
+    .delivery-status-card.completed { background: #e5ffe5; color: #27ae60; }
+    .status-icon { font-size: 28px; margin-bottom: 6px; }
+    .status-number { font-size: 24px; margin-top: 4px; }
+    .tab-nav {
+      margin-bottom: 15px;
+      display: flex;
+      gap: 0;
+    }
     .tab-button {
-      padding: 8px 20px;
-      background: none;
-      border: 1px solid #ccc;
-      border-radius: 6px;
+      padding: 10px 28px;
+      background: #f6f6f6;
+      border: 1px solid #bbb;
+      border-right: none;
+      border-radius: 8px 8px 0 0;
       cursor: pointer;
-      margin-right: 10px;
       font-weight: 600;
-      transition: background-color 0.3s, border-color 0.3s;
-      user-select: none;
+      font-size: 16px;
+      color: #222;
+      transition: background 0.2s, color 0.2s;
     }
+    .tab-button:last-child { border-right: 1px solid #bbb; }
     .tab-button.active {
-      background-color: #2563eb;
-      border-color: #2563eb;
-      color: white;
+      background: #2563eb;
+      color: #fff;
+      border-bottom: 2px solid #2563eb;
     }
-    .tab-button:hover:not(.active) { background-color: #e2e8f0; }
+    .tab-button:hover:not(.active) { background: #e2e8f0; }
     .deliveries-table {
       width: 100%;
-      border-collapse: collapse;
-      font-size: 14px;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 15px;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);
     }
     .deliveries-table thead tr {
-      background-color: #2563eb;
-      color: white;
+      background: #f6f6f6;
+      color: #222;
     }
     .deliveries-table th, .deliveries-table td {
-      padding: 10px 12px;
-      border: 1px solid #ddd;
+      padding: 12px 14px;
+      border-bottom: 1px solid #eee;
       vertical-align: middle;
     }
-    .deliveries-table tbody tr:hover { background-color: #f0f4ff; }
-    .delivery-status-icon {
-      display: inline-block;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
+    .deliveries-table tbody tr:hover { background: #f0f4ff; }
+    .deliveries-table .status-cell {
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
-    .status-pending-icon { background-color: #fbbf24; }
-    .status-warning-icon { background-color: #f97316; }
-    .status-completed-icon { background-color: #22c55e; }
-    .actions-menu { position: relative; }
+    .status-pending-icon { color: #c0392b; font-size: 20px; }
+    .status-warning-icon { color: #b59f3b; font-size: 20px; }
+    .status-completed-icon { color: #27ae60; font-size: 20px; }
     .actions-btn {
       background: none;
       border: none;
@@ -290,191 +407,286 @@
       font-size: 20px;
       color: #555;
       user-select: none;
+      margin-right: 6px;
+    }
+    .actions-btn:last-child { margin-right: 0; }
+    #deliveryFormModal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.3);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    #deliveryForm {
+      background: #fff;
+      padding: 32px 24px;
+      border-radius: 12px;
+      min-width: 320px;
+      max-width: 95vw;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+      box-shadow: 0 2px 16px rgb(0 0 0 / 0.18);
+    }
+    #deliveryForm h3 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    #deliveryForm input, #deliveryForm select {
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px solid #bbb;
+      font-size: 15px;
+    }
+    #deliveryForm button[type="submit"] {
+      margin-top: 10px;
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 0;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    #deliveryForm button[type="submit"]:hover { background: #1e40af; }
+    #deliveryForm span[onclick] {
+      position: absolute;
+      top: 10px; right: 15px;
+      cursor: pointer;
+      font-size: 22px;
+      color: #888;
+    }
+    @media (max-width: 900px) {
+      .dashboard-cards, .delivery-status-cards {
+        flex-direction: column;
+        gap: 18px;
+      }
+      .container {
+        padding: 18px 6vw;
+      }
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 10px 2vw;
+      }
+      .stock-card, .summary-section, .deliveries-section {
+        min-width: unset;
+        padding: 10px 4vw;
+      }
+      .tab-button { padding: 8px 8px; font-size: 14px; }
+      .summary-table th, .summary-table td, .deliveries-table th, .deliveries-table td {
+        padding: 8px 6px;
+        font-size: 13px;
+      }
     }
   </style>
 </head>
 <body>
-  <nav class="sidebar">
-    <button id="btn-stock" class="active" onclick="showSection('stock'); setActiveButton('btn-stock')">💧 Estoque</button>
-    <button id="btn-summary" onclick="showSection('summary'); setActiveButton('btn-summary')">📊 Resumo</button>
-    <button id="btn-delivery" onclick="showSection('delivery'); setActiveButton('btn-delivery')">🚚 Entregas</button>
-    <button id="btn-user" onclick="showSection('user'); setActiveButton('btn-user')">👤 Usuários</button>
-  </nav>
-  <div class="container">
-    <div id="stockSection">
-      <div class="dashboard-cards">
-        <div class="card">
-          <div class="card-header water-header">
-            <span>💧 Estoque de Água</span>
-            <span>❗</span>
-          </div>
-          <div class="card-content">
-            <div class="stock-info">
-              <span>Galões disponíveis:</span>
-              <span class="stock-number" id="waterStock">09</span>
-            </div>
-            <div class="controls">
-              <input type="number" class="quantity-input" value="1" id="waterQuantity" min="1">
-              <button class="btn btn-add" onclick="addStock('water')">+ Adicionar</button>
-              <button class="btn btn-remove" onclick="removeStock('water')">- Remover</button>
-            </div>
-            <div class="history-section">
-              <div class="history-title">
-                <span>🔵</span>
-                <span>Histórico de Movimentação</span>
-              </div>
-              <div class="history-content" id="waterHistoryContent">Você ainda não movimentou o registro</div>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header gas-header">
-            <span>🔥 Estoque de Gás</span>
-            <span>❗</span>
-          </div>
-          <div class="card-content">
-            <div class="stock-info">
-              <span>Botijões disponíveis:</span>
-              <span class="stock-number gas-stock" id="gasStock">24</span>
-            </div>
-            <div class="controls">
-              <input type="number" class="quantity-input" value="1" id="gasQuantity" min="1">
-              <button class="btn btn-add" onclick="addStock('gas')">+ Adicionar</button>
-              <button class="btn btn-remove" onclick="removeStock('gas')">- Remover</button>
-            </div>
-            <div class="history-section">
-              <div class="history-title">
-                <span>🟠</span>
-                <span>Histórico de Movimentação</span>
-              </div>
-              <div class="history-content" id="gasHistoryContent">Você ainda não movimentou o registro</div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <header class="app-header">
+    <div class="logo-area">
+      <img src="logo.png" alt="Logo Aquagas" />
+      <span style="font-size: 1.3rem; color: #fff; font-weight: bold;">Aquagas Controle</span>
     </div>
-    <div id="summarySection" class="hidden">
-      <div class="summary-section">
-        <h2>📊 Resumo do Estoque</h2>
-        <table class="summary-table">
-          <thead>
-            <tr>
-              <th>ITEM</th>
-              <th>QUANTIDADE</th>
-              <th>STATUS</th>
-              <th>ÚLTIMA ATUALIZAÇÃO</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <div style="display: flex; align-items: center; gap: 10px;">
-                  <span>🔥</span>
-                  <div>
-                    <strong>Gás</strong><br>
-                    <small>Botijões de 13Kg</small>
-                  </div>
-                </div>
-              </td>
-              <td><strong id="summaryGasQuantity">24</strong></td>
-              <td><span class="status-badge status-normal" id="summaryGasStatus">ABAIXO DO NORMAL</span></td>
-              <td id="summaryGasDate">15/05/2025<br><small>18:45</small></td>
-              <td><button class="btn-history btn-history-gas" onclick="showHistory('gas')">VER HISTÓRICO</button></td>
-            </tr>
-            <tr>
-              <td>
-                <div style="display: flex; align-items: center; gap: 10px;">
-                  <span>💧</span>
-                  <div>
-                    <strong>Água</strong><br>
-                    <small>Galões de 20L</small>
-                  </div>
-                </div>
-              </td>
-              <td><strong id="summaryWaterQuantity">09</strong></td>
-              <td><span class="status-badge status-low" id="summaryWaterStatus">BAIXO</span></td>
-              <td id="summaryWaterDate">13/05/2025<br><small>08:00</small></td>
-              <td><button class="btn-history btn-history-water" onclick="showHistory('water')">VER HISTÓRICO</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="header-actions">
+      <button class="admin-btn">Painel Admin</button>
+      <button class="logout-btn">Sair 🔒</button>
     </div>
-    <div id="deliverySection" class="hidden">
-      <div class="deliveries-section">
-        <div class="deliveries-header">
-          <div class="deliveries-title">
-            <span>🚚</span>
-            <span>Entregas</span>
+  </header>
+  <div style="display: flex;">
+    <nav class="sidebar">
+      <button id="btn-stock" class="active" onclick="showSection('stock'); setActiveButton('btn-stock')">💧 Estoque</button>
+      <button id="btn-summary" onclick="showSection('summary'); setActiveButton('btn-summary')">📊 Resumo</button>
+      <button id="btn-delivery" onclick="showSection('delivery'); setActiveButton('btn-delivery')">🚚 Entregas</button>
+      <button id="btn-user" onclick="showSection('user'); setActiveButton('btn-user')">👤 Usuários</button>
+    </nav>
+    <div class="container">
+      <div id="stockSection">
+        <div class="dashboard-cards">
+          <div class="card">
+            <div class="card-header water-header">
+              <span>💧 Estoque de Água</span>
+              <span>❗</span>
+            </div>
+            <div class="card-content">
+              <div class="stock-info">
+                <span>Galões disponíveis:</span>
+                <span class="stock-number" id="waterStock">09</span>
+              </div>
+              <div class="controls">
+                <input type="number" class="quantity-input" value="1" id="waterQuantity" min="1">
+                <button class="btn btn-add" onclick="addStock('water')">+ Adicionar</button>
+                <button class="btn btn-remove" onclick="removeStock('water')">- Remover</button>
+              </div>
+              <div class="history-section">
+                <div class="history-title">
+                  <span>🔵</span>
+                  <span>Histórico de Movimentação</span>
+                </div>
+                <div class="history-content" id="waterHistoryContent">Você ainda não movimentou o registro</div>
+              </div>
+            </div>
           </div>
-          <div style="display: flex; gap: 15px; align-items: center;">
-            <input type="text" class="search-input" id="searchDelivery" placeholder="Digite o nome do Cliente ou o Bairro">
-            <button class="btn btn-new-delivery" onclick="openDeliveryForm()">
-              <span>📦</span>
-              <span>NOVA ENTREGA</span>
-            </button>
+          <div class="card">
+            <div class="card-header gas-header">
+              <span>🔥 Estoque de Gás</span>
+              <span>❗</span>
+            </div>
+            <div class="card-content">
+              <div class="stock-info">
+                <span>Botijões disponíveis:</span>
+                <span class="stock-number gas-stock" id="gasStock">24</span>
+              </div>
+              <div class="controls">
+                <input type="number" class="quantity-input" value="1" id="gasQuantity" min="1">
+                <button class="btn btn-add" onclick="addStock('gas')">+ Adicionar</button>
+                <button class="btn btn-remove" onclick="removeStock('gas')">- Remover</button>
+              </div>
+              <div class="history-section">
+                <div class="history-title">
+                  <span>🟠</span>
+                  <span>Histórico de Movimentação</span>
+                </div>
+                <div class="history-content" id="gasHistoryContent">Você ainda não movimentou o registro</div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="status-cards">
-          <div class="status-card status-pending">
-            <div>⚠️ Pendentes <span class="status-number" id="pendingCount">0</span></div>
-          </div>
-          <div class="status-card status-progress">
-            <div>🕐 Em Andamento <span class="status-number" id="progressCount">0</span></div>
-          </div>
-          <div class="status-card status-completed">
-            <div>✅ Entregues <span class="status-number" id="completedCount">0</span></div>
-          </div>
-        </div>
-        <div class="tab-nav">
-          <button class="tab-button active" onclick="filterDeliveries('all', this)">Todos</button>
-          <button class="tab-button" onclick="filterDeliveries('pending', this)">Pendentes</button>
-          <button class="tab-button" onclick="filterDeliveries('progress', this)">Em Andamento</button>
-          <button class="tab-button" onclick="filterDeliveries('completed', this)">Entregues</button>
-        </div>
-        <table class="deliveries-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Cliente</th>
-              <th>Produto</th>
-              <th>Bairro</th>
-              <th>Telefone</th>
-              <th>Status</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody id="deliveriesBody"></tbody>
-        </table>
       </div>
-      <div id="deliveryFormModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.3); align-items:center; justify-content:center; z-index:1000;">
-        <form id="deliveryForm" style="background:white; padding:30px 20px; border-radius:10px; min-width:320px; max-width:90vw; display:flex; flex-direction:column; gap:12px; position:relative;">
-          <span style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:20px;" onclick="closeDeliveryForm()">✖️</span>
-          <h3>Nova Entrega</h3>
-          <input type="text" id="formCliente" placeholder="Nome do Cliente" required>
-          <input type="text" id="formProduto" placeholder="Produto (ex: Gás, Água)" required>
-          <input type="text" id="formBairro" placeholder="Bairro" required>
-          <input type="text" id="formTelefone" placeholder="Telefone" required>
-          <select id="formStatus" required>
-            <option value="pending">Pendente</option>
-            <option value="progress">Em Andamento</option>
-            <option value="completed">Entregue</option>
-          </select>
-          <button type="submit" class="btn btn-add">Salvar</button>
+      <div id="summarySection" class="hidden">
+        <div class="summary-section">
+          <h2><span style="font-size:22px;">📊</span> Resumo do Estoque</h2>
+          <table class="summary-table">
+            <thead>
+              <tr>
+                <th>ITEM</th>
+                <th>QUANTIDADE</th>
+                <th>STATUS</th>
+                <th>ÚLTIMA ATUALIZAÇÃO</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <span class="item-icon" style="color:#f97316;">🔥</span>
+                  <strong>Gás</strong><br>
+                  <small>Botijões de 13Kg</small>
+                </td>
+                <td><strong id="summaryGasQuantity">24</strong></td>
+                <td>
+                  <span class="status-badge status-normal" id="summaryGasStatus">ABAIXO DO NORMAL</span>
+                </td>
+                <td id="summaryGasDate">15/05/2025<br><small>18:45</small></td>
+                <td>
+                  <button class="btn-history btn-history-gas" onclick="showHistory('gas')">VER HISTÓRICO</button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="item-icon" style="color:#2563eb;">💧</span>
+                  <strong>Água</strong><br>
+                  <small>Galões de 20L</small>
+                </td>
+                <td><strong id="summaryWaterQuantity">09</strong></td>
+                <td>
+                  <span class="status-badge status-low" id="summaryWaterStatus">BAIXO</span>
+                </td>
+                <td id="summaryWaterDate">13/05/2025<br><small>08:00</small></td>
+                <td>
+                  <button class="btn-history btn-history-water" onclick="showHistory('water')">VER HISTÓRICO</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div id="deliverySection" class="hidden">
+        <div class="deliveries-section">
+          <div class="deliveries-header">
+            <div class="deliveries-title">
+              <span style="font-size:28px;">🛵</span>
+              <span>Entregas</span>
+            </div>
+            <div style="display: flex; gap: 15px; align-items: center;">
+              <input type="text" class="search-input" id="searchDelivery" placeholder="Digite o nome do Cliente ou o Bairro">
+              <button class="btn-new-delivery" onclick="openDeliveryForm()">
+                <span style="font-size:18px;">📦</span>
+                <span>NOVA ENTREGA</span>
+              </button>
+            </div>
+          </div>
+          <div class="delivery-status-cards">
+            <div class="delivery-status-card pending">
+              <span class="status-icon">⚠️</span>
+              <span>Pendentes</span>
+              <span class="status-number" id="pendingCount">0</span>
+            </div>
+            <div class="delivery-status-card progress">
+              <span class="status-icon">🕒</span>
+              <span>Em Andamento</span>
+              <span class="status-number" id="progressCount">0</span>
+            </div>
+            <div class="delivery-status-card completed">
+              <span class="status-icon">✅</span>
+              <span>Entregues</span>
+              <span class="status-number" id="completedCount">0</span>
+            </div>
+          </div>
+          <div class="tab-nav">
+            <button class="tab-button active" onclick="filterDeliveries('all', this)">Todas</button>
+            <button class="tab-button" onclick="filterDeliveries('pending', this)">Pendentes</button>
+            <button class="tab-button" onclick="filterDeliveries('progress', this)">Em Andamento</button>
+            <button class="tab-button" onclick="filterDeliveries('completed', this)">Entregues</button>
+          </div>
+          <table class="deliveries-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Cliente</th>
+                <th>Produto</th>
+                <th>Bairro</th>
+                <th>Telefone</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="deliveriesBody"></tbody>
+          </table>
+        </div>
+        <div id="deliveryFormModal">
+          <form id="deliveryForm">
+            <span onclick="closeDeliveryForm()">✖️</span>
+            <h3>Nova Entrega</h3>
+            <input type="text" id="formCliente" placeholder="Nome do Cliente" required>
+            <input type="text" id="formProduto" placeholder="Produto (ex: Gás, Água)" required>
+            <input type="text" id="formBairro" placeholder="Bairro" required>
+            <input type="text" id="formTelefone" placeholder="Telefone" required>
+            <select id="formStatus" required>
+              <option value="pending">Pendente</option>
+              <option value="progress">Em Andamento</option>
+              <option value="completed">Entregue</option>
+            </select>
+            <button type="submit" class="btn btn-add">Salvar</button>
+          </form>
+        </div>
+      </div>
+      <div id="userSection" class="hidden">
+        <h2>Gerenciar Usuários</h2>
+        <form id="userForm" onsubmit="event.preventDefault(); alert('Usuário cadastrado: ' + document.getElementById('newUser').value);">
+          <input type="text" id="newUser" placeholder="Novo usuário" required />
+          <button type="submit">Cadastrar</button>
+        </form>
+        <form id="resetForm" onsubmit="event.preventDefault(); alert('Senha redefinida para: ' + document.getElementById('resetUser').value);">
+          <input type="text" id="resetUser" placeholder="Usuário para redefinir senha" required />
+          <button type="submit">Redefinir Senha</button>
         </form>
       </div>
-    </div>
-    <div id="userSection" class="hidden">
-      <h2>Gerenciar Usuários</h2>
-      <form id="userForm" onsubmit="event.preventDefault(); alert('Usuário cadastrado: ' + document.getElementById('newUser').value);">
-        <input type="text" id="newUser" placeholder="Novo usuário" required />
-        <button type="submit">Cadastrar</button>
-      </form>
-      <form id="resetForm" onsubmit="event.preventDefault(); alert('Senha redefinida para: ' + document.getElementById('resetUser').value);">
-        <input type="text" id="resetUser" placeholder="Usuário para redefinir senha" required />
-        <button type="submit">Redefinir Senha</button>
-      </form>
     </div>
   </div>
   <script>

@@ -510,7 +510,10 @@
           <div class="card">
             <div class="card-header water-header">
               <span>💧 Estoque de Água</span>
-              <span>❗</span>
+              <span id="exclamacao-agua">❗</span>
+              </div>
+              <ul id="lista-agua">
+              </ul>
             </div>
             <div class="card-content">
               <div class="stock-info">
@@ -534,7 +537,10 @@
           <div class="card">
             <div class="card-header gas-header">
               <span>🔥 Estoque de Gás</span>
-              <span>❗</span>
+              <span id="exclamacao-gas">❗</span>
+              </div>
+              <ul id="lista-gas">
+              </ul>
             </div>
             <div class="card-content">
               <div class="stock-info">
@@ -840,6 +846,7 @@
           delivery.bairro.toLowerCase().includes(searchTerm);
         return statusMatch && searchMatch;
       });
+      filtered.sort((a, b) => a.cliente.localeCompare(b.cliente));
       filtered.forEach((delivery, idx) => {
         let statusIcon = delivery.status === 'pending' ? 'status-pending-icon' :
           delivery.status === 'progress' ? 'status-warning-icon' : 'status-completed-icon';
@@ -915,8 +922,9 @@
           deliveries[idx] = { ...deliveries[idx], cliente, produto, bairro, telefone, status };
         }
       } else {
+        const nextId = deliveries.length > 0 ? Math.max(...deliveries.map(d => d.id)) + 1 : 1;
         deliveries.push({
-          id: deliveryIdCounter++,
+          id: nextId,
           cliente, produto, bairro, telefone, status
         });
       }
@@ -936,6 +944,21 @@
     }
     updateStockDisplay();
     renderDeliveries();
+function atualizarExclamacaoEstoque(idLista, idExclamacao) {
+  const lista = document.getElementById(idLista);
+  const exclamacao = document.getElementById(idExclamacao);
+
+  if (lista && exclamacao) {
+    const itens = lista.getElementsByTagName('li');
+    if (itens.length >= 40) {
+      exclamacao.style.display = 'none';
+    } else {
+      exclamacao.style.display = 'inline';
+    }
+  }
+}
+atualizarExclamacaoEstoque('lista-agua', 'exclamacao-agua');
+atualizarExclamacaoEstoque('lista-gas', 'exclamacao-gas');
   </script>
 </body>
 </html>

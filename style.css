@@ -8,6 +8,7 @@ body {
     background: linear-gradient(to right, #1e3c72 0%, #2a5298 50%, #f46b45 50%, #eea849 100%);
     position: relative;
 }
+
 body::before {
     content: "";
     position: fixed;
@@ -15,6 +16,7 @@ body::before {
     background: repeating-linear-gradient(120deg, rgba(255,255,255,0.07) 0 2px, transparent 2px 30px);
     pointer-events: none;
 }
+
 body::after {
     content: "G";
     position: fixed;
@@ -30,6 +32,7 @@ body::after {
     letter-spacing: 0.1em;
     line-height: 0.8;
 }
+
 .login-container {
     background: #fff;
     border-radius: 22px;
@@ -42,39 +45,29 @@ body::after {
     max-width: 410px;
     width: 100%;
 }
+
 .logo {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     margin-bottom: 14px;
     gap: 6px;
 }
-.logo img, .logo svg {
-    width: 58px;
-    height: 58px;
+
+.logo img {
+    width: 120px; /* tamanho da logo central */
+    height: 120px;
     border-radius: 50%;
     background: #f4f7fb;
     box-shadow: 0 2px 8px 0 rgba(30, 60, 114, 0.09);
     margin-bottom: 6px;
+    object-fit: cover;
+    display: block;
 }
-.logo {
-    font-size: 2.1rem;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    font-weight: 600;
-}
-.logo span {
-    display: inline-block;
-}
-.logo .aqua {
-    color: #38b6ff;
-    letter-spacing: 1px;
-}
-.logo .gas {
-    color: #ff7a29;
-    font-family: 'Pacifico', cursive, sans-serif;
-    font-size: 1.2em;
-    margin-left: 0.18em;
-}
+
+/* Removido: .logo .aqua e .logo .gas */
+
 h2, .sistema-title {
     color: #212529;
     font-size: 1.0rem;
@@ -83,6 +76,7 @@ h2, .sistema-title {
     letter-spacing: 0.03em;
     font-family: 'Segoe UI', Arial, sans-serif;
 }
+
 label {
     display: block;
     text-align: left;
@@ -91,6 +85,7 @@ label {
     color: #222;
     font-size: 1rem;
 }
+
 input[type="text"], input[type="password"] {
     width: 100%;
     padding: 12px 10px;
@@ -105,6 +100,7 @@ input[type="text"], input[type="password"] {
 input[type="text"]:focus, input[type="password"]:focus {
     border: 1.5px solid #38b6ff;
 }
+
 button {
     width: 100%;
     padding: 13px;
@@ -125,6 +121,7 @@ button {
 button:hover {
     background: linear-gradient(90deg, #1e3c72 0%, #38b6ff 100%);
 }
+
 .link-ajuda {
     display: block;
     margin-top: 15px;
@@ -138,7 +135,9 @@ button:hover {
     font-weight: 500;
     cursor: pointer;
 }
+
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 @media (max-width: 900px) {
     body, body::before, body::after {
         background: #1e3c72 !important;

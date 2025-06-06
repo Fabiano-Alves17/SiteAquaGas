@@ -490,7 +490,7 @@
 <body>
   <header class="app-header">
     <div class="logo-area">
-      <img src="logo_Aquagas.png" alt="Logo Aquagas" />
+      <img src="Logo_Aquagas.png" alt="Logo Aquagas" />
       <span style="font-size: 1.3rem; color: #fff; font-weight: bold;">Controle de Estoque</span>
     </div>
     <div class="header-actions">
@@ -503,7 +503,6 @@
       <button id="btn-stock" class="active" onclick="showSection('stock'); setActiveButton('btn-stock')">💧 Estoque</button>
       <button id="btn-summary" onclick="showSection('summary'); setActiveButton('btn-summary')">📊 Resumo</button>
       <button id="btn-delivery" onclick="showSection('delivery'); setActiveButton('btn-delivery')">🚚 Entregas</button>
-      <button id="btn-user" onclick="showSection('user'); setActiveButton('btn-user')">👤 Usuários</button>
     </nav>
     <div class="container">
       <div id="stockSection">
@@ -676,17 +675,6 @@
           </form>
         </div>
       </div>
-      <div id="userSection" class="hidden">
-        <h2>Gerenciar Usuários</h2>
-        <form id="userForm" onsubmit="event.preventDefault(); alert('Usuário cadastrado: ' + document.getElementById('newUser').value);">
-          <input type="text" id="newUser" placeholder="Novo usuário" required />
-          <button type="submit">Cadastrar</button>
-        </form>
-        <form id="resetForm" onsubmit="event.preventDefault(); alert('Senha redefinida para: ' + document.getElementById('resetUser').value);">
-          <input type="text" id="resetUser" placeholder="Usuário para redefinir senha" required />
-          <button type="submit">Redefinir Senha</button>
-        </form>
-      </div>
     </div>
   </div>
   <script>
@@ -710,15 +698,12 @@
       document.getElementById('stockSection').classList.add('hidden');
       document.getElementById('summarySection').classList.add('hidden');
       document.getElementById('deliverySection').classList.add('hidden');
-      document.getElementById('userSection').classList.add('hidden');
       if (section === 'stock') {
         document.getElementById('stockSection').classList.remove('hidden');
       } else if (section === 'summary') {
         document.getElementById('summarySection').classList.remove('hidden');
       } else if (section === 'delivery') {
         document.getElementById('deliverySection').classList.remove('hidden');
-      } else if (section === 'user') {
-        document.getElementById('userSection').classList.remove('hidden');
       }
     }
     function setActiveButton(btnId) {

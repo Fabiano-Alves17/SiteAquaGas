@@ -1,12 +1,13 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', Arial, sans-serif;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background: linear-gradient(to right, #1e3c72 0%, #2a5298 50%, #f46b45 50%, #eea849 100%);
     position: relative;
+    overflow: hidden;
 }
 
 body::before {
@@ -15,6 +16,7 @@ body::before {
     left: 0; top: 0; bottom: 0; width: 50vw;
     background: repeating-linear-gradient(120deg, rgba(255,255,255,0.07) 0 2px, transparent 2px 30px);
     pointer-events: none;
+    z-index: 0;
 }
 
 .login-container {
@@ -25,8 +27,7 @@ body::before {
     text-align: center;
     z-index: 2;
     position: relative;
-    min-width: 120px;
-    max-width: 210px;
+    max-width: 360px;
     width: 100%;
 }
 
@@ -115,7 +116,7 @@ button:hover {
 }
 
 .link-ajuda a {
-    color: #ff7a29;
+    color: #d65300;
     text-decoration: underline;
     font-weight: 500;
     cursor: pointer;
@@ -126,12 +127,27 @@ button:hover {
         background: #1e3c72 !important;
         width: 100vw;
     }
+
     body::before {
         display: none !important;
     }
+
     .login-container {
-        min-width: 0;
         width: 95vw;
         padding: 30px 5vw;
+    }
+}
+
+@media (max-width: 480px) {
+    h2, .sistema-title {
+        font-size: 0.9rem;
+    }
+
+    label, .link-ajuda {
+        font-size: 0.85rem;
+    }
+
+    input, button {
+        font-size: 0.9rem;
     }
 }

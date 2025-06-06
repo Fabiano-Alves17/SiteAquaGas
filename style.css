@@ -1,11 +1,12 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(120deg, #1e3c72 0%, #38b6ff 40%, #f46b45 70%, #eea849 100%);
+  background: linear-gradient(120deg, #1e3c72 0%, #38b6ff 30%, #e0e0e0 60%, #f46b45 75%, #eea849 100%);
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
+  min-height: 100vh;
 }
 .login-container {
   background: #fff;
@@ -20,7 +21,7 @@ body {
   z-index: 2;
 }
 .logo {
-  width: 250px;
+  width: 290px;
   margin-bottom: 10px;
 }
 h2 {

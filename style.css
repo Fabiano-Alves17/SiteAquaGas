@@ -25,8 +25,8 @@ body::before {
     text-align: center;
     z-index: 2;
     position: relative;
-    min-width: 320px;
-    max-width: 410px;
+    min-width: 120px;
+    max-width: 210px;
     width: 100%;
 }
 
@@ -120,8 +120,6 @@ button:hover {
     font-weight: 500;
     cursor: pointer;
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 @media (max-width: 900px) {
     body, body::before {
